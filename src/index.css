@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 50% 98%;
+    --foreground: 20 25% 15%;
+
+    --card: 30 40% 97%;
+    --card-foreground: 20 25% 15%;
+
+    --popover: 30 40% 97%;
+    --popover-foreground: 20 25% 15%;
+
+    --primary: 24 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 30% 85%;
+    --secondary-foreground: 160 35% 25%;
+
+    --muted: 30 20% 93%;
+    --muted-foreground: 20 10% 45%;
+
+    --accent: 160 35% 45%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 30 20% 88%;
+    --input: 30 20% 88%;
+    --ring: 24 80% 55%;
+
+    --radius: 0.75rem;
+
+    --warm: 35 60% 95%;
+    --warm-foreground: 20 25% 15%;
+    --mint: 160 30% 90%;
+    --mint-foreground: 160 35% 25%;
+    --peach: 15 85% 65%;
+    --peach-foreground: 0 0% 100%;
+    --sand: 38 30% 82%;
+
+    --sidebar-background: 30 40% 96%;
+    --sidebar-foreground: 20 25% 25%;
+    --sidebar-primary: 24 80% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 30% 90%;
+    --sidebar-accent-foreground: 160 35% 25%;
+    --sidebar-border: 30 20% 88%;
+    --sidebar-ring: 24 80% 55%;
+  }
+
+  .dark {
+    --background: 20 20% 10%;
+    --foreground: 30 20% 92%;
+
+    --card: 20 18% 14%;
+    --card-foreground: 30 20% 92%;
+
+    --popover: 20 18% 14%;
+    --popover-foreground: 30 20% 92%;
+
+    --primary: 24 80% 55%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 160 20% 20%;
+    --secondary-foreground: 160 30% 85%;
+
+    --muted: 20 15% 18%;
+    --muted-foreground: 30 15% 60%;
+
+    --accent: 160 35% 40%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 15% 20%;
+    --input: 20 15% 20%;
+    --ring: 24 80% 55%;
+
+    --warm: 20 20% 15%;
+    --warm-foreground: 30 20% 92%;
+    --mint: 160 15% 18%;
+    --mint-foreground: 160 30% 80%;
+    --peach: 15 70% 50%;
+    --peach-foreground: 0 0% 100%;
+    --sand: 38 15% 25%;
+
+    --sidebar-background: 20 18% 12%;
+    --sidebar-foreground: 30 20% 85%;
+    --sidebar-primary: 24 80% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 160 15% 20%;
+    --sidebar-accent-foreground: 160 30% 80%;
+    --sidebar-border: 20 15% 20%;
+    --sidebar-ring: 24 80% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', sans-serif;
+  }
+}
