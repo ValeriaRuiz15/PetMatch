@@ -180,7 +180,7 @@ const Index = () => {
               },
               {
                 icon: Heart,
-                title: "Diversión y aprendizaje",
+                title: "Aprendizaje",
                 desc: "Descubre más sobre ti y sobre el perfil ideal de tu futura mascota de manera interactiva.",
               },
             ].map((item, i) => (
