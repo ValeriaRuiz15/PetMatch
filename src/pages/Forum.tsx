@@ -40,12 +40,19 @@ import { motion, AnimatePresence } from "framer-motion";
 
 const generateId = () => Math.random().toString(36).substring(2, 9);
 
+const savePostsToStorage = (posts: ForumPost[]) => {
+  localStorage.setItem("forumPosts", JSON.stringify(posts));
+};
+
 const Forum = () => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const isLogged = localStorage.getItem("isLogged") === "true";
   const username = user?.name || "Anónimo";
 
-  const [posts, setPosts] = useState<ForumPost[]>(initialForumPosts);
+  const [posts, setPosts] = useState<ForumPost[]>(() => {
+    const storedPosts = localStorage.getItem("forumPosts");
+    return storedPosts ? JSON.parse(storedPosts) : initialForumPosts;
+  });
   const [search, setSearch] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<string>("all");
   const [myPostsOnly, setMyPostsOnly] = useState(false);
@@ -87,7 +94,12 @@ const Forum = () => {
       comments: []
     };
 
-    setPosts((prev) => [post, ...prev]);
+    // Reemplaza el setPosts anterior por esto:
+    const updatedPosts = [post, ...posts];
+    setPosts(updatedPosts);                     // actualiza el estado
+    localStorage.setItem("forumPosts", JSON.stringify(updatedPosts)); // guarda en localStorage
+
+    // Limpiar formulario y cerrar diálogo
     setNewPost({
       title: "",
       content: "",
@@ -106,13 +118,12 @@ const Forum = () => {
       date: new Date().toISOString().split("T")[0]
     };
 
-    setPosts((prev) =>
-      prev.map((p) =>
-        p.id === selectedPost.id
-          ? { ...p, comments: [...p.comments, comment] }
-          : p
-      )
+    const updatedPosts = posts.map((p) =>
+      p.id === selectedPost.id ? { ...p, comments: [...p.comments, comment] } : p
     );
+
+    setPosts(updatedPosts);
+    savePostsToStorage(updatedPosts); // <-- guardar
 
     setSelectedPost((prev) =>
       prev ? { ...prev, comments: [...prev.comments, comment] } : null
@@ -248,7 +259,7 @@ const Forum = () => {
               </Button>
             )}
           </div>
-           {/* Posts */}
+          {/* Posts */}
           <div className="space-y-4">
             <AnimatePresence>
               {filtered.map((post, i) => (
