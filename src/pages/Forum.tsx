@@ -47,7 +47,7 @@ const savePostsToStorage = (posts: ForumPost[]) => {
 const Forum = () => {
   const user = JSON.parse(localStorage.getItem("user") || "{}");
   const isLogged = localStorage.getItem("isLogged") === "true";
-  const username = user?.name || "Anónimo";
+  const username = isLogged ? user?.name : "Anónimo";
 
   const [posts, setPosts] = useState<ForumPost[]>(() => {
     const storedPosts = localStorage.getItem("forumPosts");

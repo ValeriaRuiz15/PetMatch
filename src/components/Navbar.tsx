@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, PawPrint } from "lucide-react";
 
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
+
+  // Detecta cambios en localStorage cuando se monta la Navbar
+  useEffect(() => {
+    setIsLogged(localStorage.getItem("isLogged") === "true");
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.setItem("isLogged", "false");
+    setIsLogged(false); // actualiza el estado y fuerza render
+    window.location.href = "/login";
+  };
 
   const links = [
     { label: "Inicio", href: "/" },
@@ -34,14 +47,25 @@ const Navbar = () => {
               {l.label}
             </Link>
           ))}
-          <Link to="/login">
-            <Button variant="outline" size="sm">
-              Iniciar Sesión
+
+          {isLogged ? (
+            <Button variant="outline" size="sm" onClick={handleLogout}>
+              Cerrar sesión
             </Button>
-          </Link>
-          <Link to="/registro">
-            <Button size="sm">Registrarse</Button>
-          </Link>
+          ) : (
+            <>
+              <Link to="/login">
+                <Button variant="outline" size="sm">
+                  Iniciar Sesión
+                </Button>
+              </Link>
+              <Link to="/registro">
+                <Button size="sm">Registrarse</Button>
+              </Link>
+            </>
+          )}
+
+
           <Link to="/admin/login">
             <Button variant="ghost" size="sm" className="gap-1 text-muted-foreground">
               ⚙️ Configuración
@@ -69,14 +93,23 @@ const Navbar = () => {
                 </Link>
               ))}
               <div className="mt-4 flex flex-col gap-2">
-                <Link to="/login" onClick={() => setOpen(false)}>
-                  <Button variant="outline" className="w-full">
-                    Iniciar Sesión
+                {isLogged ? (
+                  <Button variant="outline" className="w-full" onClick={handleLogout}>
+                    Cerrar sesión
                   </Button>
-                </Link>
-                <Link to="/registro" onClick={() => setOpen(false)}>
-                  <Button className="w-full">Registrarse</Button>
-                </Link>
+                ) : (
+                  <>
+                    <Link to="/login" onClick={() => setOpen(false)}>
+                      <Button variant="outline" className="w-full">
+                        Iniciar Sesión
+                      </Button>
+                    </Link>
+                    <Link to="/registro" onClick={() => setOpen(false)}>
+                      <Button className="w-full">Registrarse</Button>
+                    </Link>
+                  </>
+                )}
+
                 <Link to="/admin/login" onClick={() => setOpen(false)}>
                   <Button variant="ghost" className="w-full gap-1 text-muted-foreground">
                     ⚙️ Configuración
