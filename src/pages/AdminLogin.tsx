@@ -29,7 +29,7 @@ const AdminLogin = () => {
 
 
   const ADMIN_HASH =
-    "8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918";
+    "25f43b1486ad95a1398e3eeb3d83bc4010015fcc9bedb35b432e00298d5021f7";
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
