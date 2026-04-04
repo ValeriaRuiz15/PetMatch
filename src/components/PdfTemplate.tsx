@@ -41,7 +41,7 @@ const PdfTemplate = React.forwardRef<HTMLDivElement, Props>(
         {/* HEADER */}
         <div style={{ marginBottom: "20px" }}>
           <h1 style={{ color: "#ff7a59", margin: 0 }}>
-            PawMatch 🐾
+            PetMatch 🐾
           </h1>
           <p style={{ margin: 0, color: "#888" }}>
             Reporte de compatibilidad de adopción
